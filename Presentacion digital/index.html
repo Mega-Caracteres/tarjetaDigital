@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mariano Algañaraz — Desarrollador Web</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a1a0f;
+      color: #e8eaf0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+    canvas#bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .card {
+      position: relative;
+      z-index: 1;
+      background: rgba(8, 20, 12, 0.90);
+      border: 1.5px solid rgba(0, 255, 140, 0.45);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 480px;
+      width: 100%;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 0 60px rgba(0,255,120,0.10);
+    }
+    .hero { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem; }
+    .avatar {
+      width: 70px; height: 70px; border-radius: 50%;
+      background: #0a2a14;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; font-weight: 700; color: #00ffaa;
+      flex-shrink: 0;
+      border: 2px solid #00ee88;
+      box-shadow: 0 0 18px rgba(0,255,140,0.4);
+    }
+    .hero-info h1 { font-size: 21px; font-weight: 700; color: #ffffff; margin-bottom: 5px; }
+    .hero-info .roles { font-size: 13px; color: #a8d8b8; line-height: 1.6; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; background: #0a2a14; color: #00ee88;
+      border-radius: 20px; padding: 3px 12px; margin-top: 8px;
+      border: 1px solid #00ee8866;
+      font-weight: 500;
+    }
+    .divider { border: none; border-top: 1px solid rgba(0,255,140,0.2); margin: 1.25rem 0; }
+    .section-label {
+      font-size: 11px; color: #60c088; text-transform: uppercase;
+      letter-spacing: 0.12em; margin-bottom: 0.75rem; font-weight: 600;
+    }
+    .contact-btn {
+      display: flex; align-items: center; gap: 12px;
+      background: #0d2e18; border: 1.5px solid #00ee8888;
+      border-radius: 12px; padding: 0.9rem 1rem;
+      text-decoration: none; color: #00ffaa;
+      font-size: 15px; font-weight: 600;
+      transition: background 0.2s, border-color 0.2s;
+      margin-bottom: 0.75rem;
+    }
+    .contact-btn:hover { background: #113a1e; border-color: #00ffaa; }
+    .contact-btn i { font-size: 22px; }
+    .contact-btn span { color: #88ccaa; font-size: 13px; margin-left: auto; font-weight: 500; }
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .proj-card {
+      background: #0a1f10;
+      border: 1px solid rgba(0,255,140,0.2);
+      border-radius: 14px; padding: 0.9rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .proj-card:hover { border-color: rgba(0,255,140,0.6); box-shadow: 0 0 14px rgba(0,255,140,0.1); }
+    .proj-card .icon { font-size: 22px; color: #00ffaa; margin-bottom: 8px; }
+    .proj-card h3 { font-size: 13px; font-weight: 700; color: #e0ffee; margin-bottom: 4px; }
+    .proj-card p { font-size: 12px; color: #88b89a; line-height: 1.55; }
+    .qr-section { text-align: center; margin-top: 0.5rem; }
+    .qr-section p { font-size: 12px; color: #60c088; margin-top: 0.6rem; font-weight: 500; }
+    #qr-canvas { border-radius: 10px; background: #d0f5e0; padding: 10px; display: inline-block; }
+    .footer { text-align: center; font-size: 11px; color: #3a7055; margin-top: 1.5rem; }
+    @media (max-width: 400px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<div class="card">
+  <div class="hero">
+    <div class="avatar">MA</div>
+    <div class="hero-info">
+      <h1>Mariano Algañaraz</h1>
+      <div class="roles">
+        Tec. Superior en Desarrollo de Software<br>
+        Tec. Superior en Laboratorio Informático
+      </div>
+      <span class="badge"><i class="ti ti-map-pin"></i> Mendoza, Argentina</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <p class="section-label">Contacto</p>
+  <a class="contact-btn" href="https://wa.me/542612090061" target="_blank">
+    <i class="ti ti-brand-whatsapp"></i>
+    WhatsApp
+    <span>+54 261 209-0061</span>
+  </a>
+
+  <hr class="divider">
+  <p class="section-label">Proyectos que puedo realizar</p>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="icon"><i class="ti ti-layout-dashboard"></i></div>
+      <h3>Aplicaciones web</h3>
+      <p>Sistemas a medida, paneles de administración y dashboards.</p>
+    </div>
+    <div class="proj-card">
+      <div class="icon"><i class="ti ti-device-mobile"></i></div>
+      <h3>Sitios responsivos</h3>
+      <p>Páginas adaptadas a cualquier dispositivo móvil o escritorio.</p>
+    </div>
+    <div class="proj-card">
+      <div class="icon"><i class="ti ti-database"></i></div>
+      <h3>Bases de datos</h3>
+      <p>Diseño e integración de bases de datos relacionales y no relacionales.</p>
+    </div>
+    <div class="proj-card">
+      <div class="icon"><i class="ti ti-api"></i></div>
+      <h3>APIs y backend</h3>
+      <p>Servicios REST para conectar aplicaciones y automatizar procesos.</p>
+    </div>
+    <div class="proj-card">
+      <div class="icon"><i class="ti ti-chart-bar"></i></div>
+      <h3>Sistemas de gestión</h3>
+      <p>Inventario, facturación y administración empresarial.</p>
+    </div>
+    <div class="proj-card">
+      <div class="icon"><i class="ti ti-server"></i></div>
+      <h3>Soporte e infraestructura</h3>
+      <p>Servidores, redes y laboratorios informáticos.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <p class="section-label" style="text-align:center">Compartí esta tarjeta</p>
+  <div class="qr-section">
+    <div id="qr-canvas"></div>
+    <p>Escaneá el QR para abrir esta tarjeta</p>
+  </div>
+  <div class="footer">© 2025 Mariano Algañaraz · Tarjeta digital</div>
+</div>
+
+<script>
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', () => { resize(); buildCircuit(); });
+
+const C_TRACK  = '#1a4d2a';
+const C_GLOW   = '#00ff9a';
+const C_PULSE  = '#00ffaa';
+const C_NODE   = '#00cc77';
+
+let nodes = [], edges = [], pulses = [];
+
+function buildCircuit() {
+  nodes = []; edges = []; pulses = [];
+  const W = canvas.width, H = canvas.height;
+  const COLS = Math.ceil(W / 55) + 1;
+  const ROWS = Math.ceil(H / 55) + 1;
+
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      if (Math.random() > 0.42) continue;
+      nodes.push({
+        x: c * 55 + (Math.random() - 0.5) * 18,
+        y: r * 55 + (Math.random() - 0.5) * 18,
+        type: Math.random() < 0.12 ? 'chip' : Math.random() < 0.28 ? 'via' : 'dot'
+      });
+    }
+  }
+
+  for (let i = 0; i < nodes.length; i++) {
+    const a = nodes[i];
+    for (let j = i + 1; j < nodes.length; j++) {
+      const b = nodes[j];
+      if (Math.abs(a.x - b.x) < 120 && Math.abs(a.y - b.y) < 120 && Math.random() > 0.48) {
+        edges.push({ a, b, bend: Math.random() < 0.5 ? 'h' : 'v' });
+      }
+    }
+  }
+
+  for (let i = 0; i < 20; i++) spawnPulse();
+}
+
+function spawnPulse() {
+  if (!edges.length) return;
+  const e = edges[Math.floor(Math.random() * edges.length)];
+  pulses.push({ edge: e, t: Math.random(), speed: 0.0018 + Math.random() * 0.003, dir: Math.random() < 0.5 ? 1 : -1 });
+}
+
+function pulsePos(p) {
+  const { a, b, bend } = p.edge;
+  const t = p.t;
+  const mx = bend === 'h' ? b.x : a.x;
+  const my = bend === 'h' ? a.y : b.y;
+  if (t < 0.5) { const s = t * 2; return { x: a.x + (mx - a.x) * s, y: a.y + (my - a.y) * s }; }
+  const s = (t - 0.5) * 2;
+  return { x: mx + (b.x - mx) * s, y: my + (b.y - my) * s };
+}
+
+function drawEdge(e) {
+  const { a, b, bend } = e;
+  ctx.beginPath();
+  ctx.moveTo(a.x, a.y);
+  if (bend === 'h') { ctx.lineTo(b.x, a.y); ctx.lineTo(b.x, b.y); }
+  else              { ctx.lineTo(a.x, b.y); ctx.lineTo(b.x, b.y); }
+  ctx.stroke();
+}
+
+let last = 0;
+function draw(ts = 0) {
+  last = ts;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Background
+  ctx.fillStyle = '#0a1a0f';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Tracks
+  ctx.strokeStyle = C_TRACK;
+  ctx.lineWidth = 1.2;
+  ctx.shadowBlur = 0;
+  for (const e of edges) drawEdge(e);
+
+  // Nodes
+  for (const n of nodes) {
+    if (n.type === 'chip') {
+      const s = 12;
+      ctx.strokeStyle = C_NODE;
+      ctx.lineWidth = 1;
+      ctx.shadowColor = C_GLOW;
+      ctx.shadowBlur = 6;
+      ctx.strokeRect(n.x - s/2, n.y - s/2, s, s);
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = C_TRACK;
+      ctx.beginPath(); ctx.moveTo(n.x - s/2 - 5, n.y - 3); ctx.lineTo(n.x - s/2, n.y - 3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(n.x - s/2 - 5, n.y + 3); ctx.lineTo(n.x - s/2, n.y + 3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(n.x + s/2, n.y - 3); ctx.lineTo(n.x + s/2 + 5, n.y - 3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(n.x + s/2, n.y + 3); ctx.lineTo(n.x + s/2 + 5, n.y + 3); ctx.stroke();
+    } else if (n.type === 'via') {
+      ctx.beginPath(); ctx.arc(n.x, n.y, 4.5, 0, Math.PI * 2);
+      ctx.strokeStyle = C_NODE; ctx.lineWidth = 1.2;
+      ctx.shadowColor = C_GLOW; ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.fillStyle = '#0a1a0f'; ctx.fill();
+      ctx.shadowBlur = 0;
+    } else {
+      ctx.beginPath(); ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = '#2a6040'; ctx.shadowBlur = 0; ctx.fill();
+    }
+  }
+
+  // Pulses
+  for (let i = pulses.length - 1; i >= 0; i--) {
+    const p = pulses[i];
+    p.t += p.speed * p.dir;
+    if (p.t > 1 || p.t < 0) {
+      p.dir *= -1;
+      p.t = Math.max(0, Math.min(1, p.t));
+      if (Math.random() < 0.25) { pulses.splice(i, 1); spawnPulse(); continue; }
+    }
+    const pos = pulsePos(p);
+    const trailT = Math.max(0, Math.min(1, p.t - 0.05 * p.dir));
+    const trail = pulsePos({ ...p, t: trailT });
+
+    // Trail line
+    const grad = ctx.createLinearGradient(trail.x, trail.y, pos.x, pos.y);
+    grad.addColorStop(0, 'rgba(0,255,154,0)');
+    grad.addColorStop(1, 'rgba(0,255,154,0.6)');
+    ctx.beginPath(); ctx.moveTo(trail.x, trail.y); ctx.lineTo(pos.x, pos.y);
+    ctx.strokeStyle = grad; ctx.lineWidth = 2.5;
+    ctx.shadowColor = C_GLOW; ctx.shadowBlur = 10; ctx.stroke();
+
+    // Dot
+    ctx.beginPath(); ctx.arc(pos.x, pos.y, 3.5, 0, Math.PI * 2);
+    ctx.fillStyle = C_PULSE; ctx.shadowColor = C_GLOW; ctx.shadowBlur = 16; ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+buildCircuit();
+requestAnimationFrame(draw);
+setInterval(() => { if (pulses.length < 28) spawnPulse(); }, 700);
+
+// QR
+QRCode.toCanvas(document.createElement('canvas'), window.location.href, {
+  width: 150, color: { dark: '#0a1a0f', light: '#d0f5e0' }
+}, (err, c) => { if (!err) document.getElementById('qr-canvas').appendChild(c); });
+</script>
+</body>
+</html>
